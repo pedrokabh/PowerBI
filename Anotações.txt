@@ -1,0 +1,16 @@
+--- 1.0 --- #Calculando Distância entre data atual e próxima data da coluna
+
+Num Dias = 
+VAR dataAtual = SELECTEDVALUE('Historico Abastecimento'[Dta Abast])
+Var dataAnterior = CALCULATE(MAX('Historico Abastecimento'[Dta Abast]),FILTER(ALL('Historico Abastecimento'),'Historico Abastecimento'[Dta Abast]<dataAtual))
+return
+IF(dataAnterior<>BLANK(),
+1*dataAtual-dataAnterior,"")
+
+--- 1.2 --- #Calculando Valor - Próximo Valor da Coluna
+Km Rodados = 
+VAR OdometroAtual = SELECTEDVALUE('Historico Abastecimentos'[Odometro])
+VAR ProximoOdometro = CALCULATE(MIN('Historico Abastecimentos'[Odometro]),FILTER(all('Historico Abastecimentos'),'Historico Abastecimentos'[Odometro]>OdometroAtual))
+return
+if(OdometroAtual<>BLANK(),ProximoOdometro-OdometroAtual,"")
+#
